@@ -15,10 +15,10 @@ const validarSexoProf = (sexoProf) =>{
 const validarSexoAluno = (sexoAluno) =>{
 
     if(sexoAluno === 'MASCULINO'){
-        return 'aluno'
+        return 'Aluno'
     }
     else if(sexoAluno === 'FEMININO'){
-        return 'aluna'
+        return 'Aluna'
     }
     else{
         return false
@@ -47,19 +47,41 @@ const exibirAvaliacaoDoAluno = (media) => {
     }
     else if(media >= 50 && media <=69){
         return  `Exame, média: ${media}`
+
     }
     else if(media < 50){
         return `Reprovado, média: ${media}`
     }
     
 }
-
+const avaliarExame = (mediaNotaExame, media) =>{
+    if(mediaNotaExame < 50 ){
+        return `Reprovado, média final: ${mediaNotaExame}`
+    }
+    else if(mediaNotaExame >= 50){
+        return `Aprovado média final: ${mediaNotaExame}`
+    }
+    else{
+        return false
+    }
+    
+}
+const imprimirRelatorio = (sexoAluno, nomeAluno, sexoProfessor,nomeProfessor,tipoDocurso,nomeDisciplina) =>{
+    return `${sexoAluno}: ${nomeAluno} 
+    \n${sexoProfessor}: ${nomeProfessor}
+    \nCurso: ${tipoDocurso}
+    \nDisciplina: ${nomeDisciplina} 
+    `
+          
+}
 
 module.exports = {
     validarRangeDasNotasECalcular,
     validarSexoProf,
     validarSexoAluno,
-    exibirAvaliacaoDoAluno
+    exibirAvaliacaoDoAluno,
+    imprimirRelatorio,
+    avaliarExame
 }
 
 

@@ -26,23 +26,24 @@ entradaDados.question("Qual o nome do aluno ? \n", function (nomeAluno) {
     entradaDados.question("Qual o Sexo do aluno ? \n", function (sexoAluno) {
 
         let sexoDoAluno = sexoAluno.toUpperCase()
-        console.log(functions.validarSexoAluno(sexoDoAluno));
+        const alunoSexo = functions.validarSexoAluno(sexoDoAluno)
+
 
         entradaDados.question("Qual o nome do professor ? \n", function (nomeProfessor) {
             let nomeDoProfessor = nomeProfessor
-            console.log(nomeDoProfessor);
+
 
             entradaDados.question("Qual o sexo do Professor ? \n ", function (sexoProfessor) {
                 let sexoDoProfessor = sexoProfessor.toUpperCase()
-                functions.validarSexoProf(sexoDoProfessor)
+                const professorSexo = functions.validarSexoProf(sexoDoProfessor)
 
                 entradaDados.question("Qual o nome do curso ? \n", function (nomeCurso) {
                     let nomeDoCurso = nomeCurso
-                    console.log(nomeDoCurso);
+
 
                     entradaDados.question("Qual o nome da disciplina ? \n", function (nomeDisciplina) {
                         let nomeDaDisciplina = nomeDisciplina
-                        console.log(nomeDaDisciplina);
+
 
                         //Notas: calculo de média funcionando com validação.
                         entradaDados.question("Qual é a nota1 ? \n", function (valor1) {
@@ -56,9 +57,24 @@ entradaDados.question("Qual o nome do aluno ? \n", function (nomeAluno) {
 
                                     entradaDados.question("Qual é a nota4 ? \n", function (valor4) {
                                         let nota4 = Number(valor4)
-                                        const media = functions.validarRangeDasNotasECalcular(nota1,nota2,nota3,nota4)
+                                        const media = functions.validarRangeDasNotasECalcular(nota1, nota2, nota3, nota4)
                                         const avaliacaoAluno = functions.exibirAvaliacaoDoAluno(media)
-                                        console.log(avaliacaoAluno);
+                                        const relatorio = functions.imprimirRelatorio(
+                                            alunoSexo, nomeDoAluno,
+                                            professorSexo, nomeDoProfessor,
+                                            nomeDoCurso, nomeDaDisciplina
+                                        )
+                                        console.log(relatorio);
+                                        if (avaliacaoAluno === `Exame, média: ${media}`) {
+                                            console.log(avaliacaoAluno);
+                                            entradaDados.question('Foi nescessário realizar o exame, qual foi a nota obtida ?', function (notaExame) {
+                                                let notaDoExame = Number(notaExame)
+                                                let resultadoExame = (notaDoExame + media)
+                                                let resultadoMediaExame = resultadoExame / 2
+                                                console.log(functions.avaliarExame(resultadoMediaExame));
+                                            })
+                                        }
+
                                         //Notas
                                     })
                                 })
